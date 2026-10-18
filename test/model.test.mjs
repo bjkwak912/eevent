@@ -19,3 +19,14 @@ test('all 30 records keep unique coverage and unknown rewards hidden',()=>{
  const points={...event,rewardUnit:'P'};assert.equal(rewardLabel(points,10_000_000,'2026-10-17'),'20,000P');
 });
 test('selection never exceeds three and can be removed',()=>{const ids=['a','b','c'];assert.equal(toggleSelection(ids,'d'),ids);assert.deepEqual(toggleSelection(ids,'b'),['a','c']);});
+test('verified Korea transfer tiers use correct raw boundaries and no extra bonuses',()=>{
+ const find=product=>catalog.events.find(row=>row.id===product+':korea');
+ assert.equal(reward(find('ISA'),999_999,'2026-10-18'),null);
+ assert.equal(reward(find('ISA'),1_000_000,'2026-10-18'),20_000);
+ assert.equal(reward(find('ISA'),100_000_000,'2026-10-18'),1_000_000);
+ assert.equal(reward(find('PENSION'),3_999_999,'2026-10-18'),null);
+ assert.equal(reward(find('PENSION'),4_000_000,'2026-10-18'),30_000);
+ assert.equal(reward(find('IRP'),99_999,'2026-10-18'),null);
+ assert.equal(reward(find('IRP'),100_000,'2026-10-18'),10_000);
+ assert.equal(reward(find('IRP'),10_000_000,'2026-10-18'),30_000);
+});
