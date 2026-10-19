@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "outputDirectory": "public",
+  "regions": ["sin1"],
+  "functions": { "api/index.mjs": { "maxDuration": 300 } },
+  "rewrites": [{ "source": "/api/:path*", "destination": "/api" }],
+  "crons": [{ "path": "/api/cron/check", "schedule": "0 3 * * *" }],
+  "headers": [{
+    "source": "/(.*)",
+    "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'" }
+    ]
+  }]
+}

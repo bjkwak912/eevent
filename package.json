@@ -1,8 +1,21 @@
 {
   "name": "omgim-web",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
-  "scripts": { "start": "node server.mjs", "test": "node --test test/*.test.mjs" }
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
+    "catalog:publish": "node --env-file=.env.local scripts/publish.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "1.0.2"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10"
+  }
 }

@@ -2,12 +2,19 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, extname, sep } from 'node:path';
+import { handle } from './lib/api.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), 'public');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
 export const server = http.createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    if(pathname.startsWith('/api/')) {
+      const chunks=[];let size=0;
+      for await(const chunk of request){size+=chunk.length;if(size>1_000_000){response.writeHead(413).end();return;}chunks.push(chunk);}
+      const result=await handle(new Request('http://localhost'+request.url,{method:request.method,headers:request.headers,...(!['GET','HEAD'].includes(request.method)?{body:Buffer.concat(chunks)}:{})}));
+      response.writeHead(result.status,Object.fromEntries(result.headers));response.end(Buffer.from(await result.arrayBuffer()));return;
+    }
     const path = resolve(root, '.' + (pathname === '/' ? '/index.html' : pathname));
     if (!path.startsWith(root + sep)) { response.writeHead(403).end(); return; }
     const body = await readFile(path);

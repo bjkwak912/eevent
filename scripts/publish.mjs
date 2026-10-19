@@ -1,0 +1,18 @@
+import { readFile } from 'node:fs/promises';
+import { validateCatalog } from '../public/catalog-validation.js';
+const origin=new URL(process.env.CATALOG_API_ORIGIN);
+if(origin.protocol!=='https:'||origin.pathname!=='/'||origin.username||origin.password)throw Error('Production HTTPS origin required');
+if(!process.env.CATALOG_PUBLISH_TOKEN||process.env.CATALOG_PUBLISH_TOKEN.length<32)throw Error('Publication token required');
+const catalog=validateCatalog(JSON.parse(await readFile(process.argv[2]||new URL('../public/catalog.json',import.meta.url),'utf8')));
+const reviewNote=process.argv[3];if(!reviewNote?.trim())throw Error('Pass a factual review note as the second argument');
+const current=await fetch(new URL('/api/catalog',origin),{cache:'no-store'});
+let expectedRevision;
+if(current.ok)expectedRevision=current.headers.get('x-catalog-source')==='database'?(await current.json()).revision:0;
+else if(current.status===503&&(await current.json()).error==='CATALOG_NOT_SEEDED')expectedRevision=0;
+else throw Error('Read current catalog before publishing');
+const response=await fetch(new URL('/api/admin/publish',origin),{method:'POST',headers:{Authorization:'Bearer '+process.env.CATALOG_PUBLISH_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({catalog,expectedRevision,reviewNote}),signal:AbortSignal.timeout(30000)});
+if(!response.ok)throw Error('Publication failed: HTTP '+response.status);
+const result=await response.json();console.log(JSON.stringify(result));
+const check=await fetch(new URL('/api/catalog',origin),{cache:'no-store'});
+if(!check.ok||check.headers.get('x-catalog-source')!=='database'||(await check.json()).revision!==result.revision)throw Error('Public database readback failed');
+console.log('Public API revision verified');

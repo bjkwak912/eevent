@@ -1,4 +1,6 @@
 import { brokers, products, won, parseAmount, status, reward, rewardLabel, toggleSelection } from './model.js';
+import { fetchCatalog } from './catalog-client.js';
+import { validateCatalog } from './catalog-validation.js';
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const safeUrl = value => { try { const url = new URL(value); return url.protocol === 'https:' ? esc(url.href) : '#'; } catch { return '#'; } };
@@ -61,10 +63,20 @@ $('#compare').addEventListener('click',()=>{
 });
 document.querySelectorAll('[data-close]').forEach(button=>button.addEventListener('click',()=>document.getElementById(button.dataset.close).close()));
 formatInput(raw);
-try {
-  const response=await fetch('/catalog.json',{cache:'no-cache'});if(!response.ok)throw Error('fetch');catalog=await response.json();
-  if(catalog.schemaVersion!==1||catalog.events.length!==30||new Set(catalog.events.map(event=>event.id)).size!==30)throw Error('schema');
-  $('#snapshot').textContent=`자료 반영 ${catalog.snapshotAt.slice(0,10).replaceAll('-','.')} · 현재 버전 기준`;render();
-} catch {catalog=null;$('#snapshot').textContent='자료를 불러오지 못했어요';$('#results').innerHTML='<p class="empty">행사 자료를 불러오지 못했습니다.<br>잠시 후 페이지를 새로고침해 주세요.</p>';}
+try{catalog=validateCatalog(stored('omgim-catalog',null));render();}catch{catalog=null;}
+let refreshing=false;
+async function refreshCatalog() {
+  if(refreshing)return;refreshing=true;
+  try {
+    const result=await fetchCatalog(catalog);catalog=result.catalog;persist('omgim-catalog',catalog);
+    $('#snapshot').textContent=`자료 반영 ${catalog.snapshotAt.slice(0,10).replaceAll('-','.')} · ${result.source==='server'?'서버 확인 완료':'초기 자료 · 서버 연결 준비 중'}`;render();
+  }catch{
+    $('#snapshot').textContent=catalog?`자료 반영 ${catalog.snapshotAt.slice(0,10)} · 연결 실패, 저장 자료 표시`:'자료를 불러오지 못했어요';
+    if(!catalog)$('#results').innerHTML='<p class="empty">행사 자료를 불러오지 못했습니다.<br>잠시 후 새로고침해 주세요.</p>';
+  }finally{refreshing=false;}
+}
+$('#refresh-catalog').addEventListener('click',refreshCatalog);
+await refreshCatalog();
 // Re-evaluate expiry on a long-open tab, including a tab returning from sleep.
-setInterval(render,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)render();});
+setInterval(render,60000);setInterval(()=>{if(!document.hidden)refreshCatalog();},300000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshCatalog();});
