@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "revision": 3,
-  "snapshotAt": "2026-10-19T08:59:37+09:00",
+  "revision": 4,
+  "snapshotAt": "2026-10-19T09:36:20+09:00",
   "events": [
     {
       "id": "ISA:mirae",
@@ -476,64 +476,115 @@
       "calculationVerified": true
     },
     {
-      "id": "ISA:toss",
-      "brokerageId": "toss",
+      "id": "ISA:hanwha",
+      "brokerageId": "hanwha",
       "product": "ISA",
-      "title": "현재 이전 이벤트 확인 필요",
-      "kind": "미확인",
+      "title": "비대면 중개형 ISA 순입금 · 상품거래 조건 필수",
+      "kind": "현금 리워드 · 상품거래 1천만원 필수",
       "rewardUnit": "원",
-      "tiers": [],
-      "status": "UNVERIFIED",
-      "startDate": null,
-      "endDate": null,
-      "retentionText": "공식 조건 확인 필요",
-      "paymentText": "공식 조건 확인 필요",
-      "applicationText": "공식 조건 확인 필요",
+      "tiers": [
+        {
+          "minimumWon": 1000000,
+          "rewardWon": 10000
+        },
+        {
+          "minimumWon": 10000000,
+          "rewardWon": 30000
+        },
+        {
+          "minimumWon": 30000000,
+          "rewardWon": 50000
+        },
+        {
+          "minimumWon": 50000000,
+          "rewardWon": 100000
+        },
+        {
+          "minimumWon": 100000000,
+          "rewardWon": 200000
+        },
+        {
+          "minimumWon": 300000000,
+          "rewardWon": 300000
+        },
+        {
+          "minimumWon": 500000000,
+          "rewardWon": 500000
+        },
+        {
+          "minimumWon": 1000000000,
+          "rewardWon": 1000000
+        }
+      ],
+      "status": "RESTRICTED",
+      "startDate": "2026-09-01",
+      "endDate": "2026-10-30",
+      "retentionText": "2026-11-30까지 순입금 잔고 유지 · 상품거래 1천만원 필수",
+      "paymentText": "2026-12-17 18시 이내 종합계좌 등으로 지급 예정",
+      "applicationText": "이벤트 신청과 마케팅 SMS·PUSH 동의 필수, 종료일 17시까지 신청",
       "conditions": [
-        "현재 적용되는 타사 이전 행사의 금액 구간과 조건을 검증하지 못했습니다.",
-        "확인 실패는 상품 미취급이나 이벤트 미진행을 뜻하지 않습니다."
+        "신규 비대면 중개형 ISA 고객 또는 2026-08-28 잔고 10만원 미만 휴면 고객 대상. 영업점 유잔고·유관리자·정상계좌 보유 고객, 법인·대주주·임직원, 2026년 내 중개형 ISA 타사 이전 이력 고객은 제외한다.",
+        "행사 기간 중 ISA 계좌에서 1천만원 이상 상품거래 필수. 국내주식·채권·펀드·리츠·ELS·RP 등 대상이며 거래 조건 충족을 확인하기 전 예상 혜택을 표시하지 않는다.",
+        "순입금=입금-출금, 타사 이전 2배·일반 입금 1배. 자사 보유 계좌나 타사로 출금하면 차감하며 배당금·이자·예탁금 이용료 등 자동 입금은 제외한다.",
+        "11월 말까지 유지 후 12월 17일 18시 이내 지급. ISA 외 입출금 가능한 종합·금융상품 계좌 보유 필수. 계좌 폐쇄·마케팅 미동의·수신거부·영업점 이관 등은 지급 제외될 수 있다.",
+        "리워드 5만원 초과 시 제세공과금 22%는 고객 부담으로 차감 지급한다. 기타소득·재산상 이익 등록 대상이며 다른 유사 입고 행사와 중복 지급되지 않고 먼저 신청한 행사 기준으로 처리한다.",
+        "신규 계좌개설 5천원 보너스는 타사 이전 고객이 지급 대상에서 제외되므로 합산하지 않는다."
       ],
-      "calculationNote": "금액 계산 보류 · 공식 안내에서 현재 조건을 확인해 주세요.",
-      "officialUrl": "https://p.tossinvest.com/ko/faq?tab=400",
+      "calculationNote": "타사 ISA 이전 순입금 2배 인정. 행사 중 ISA 내 1천만원 이상 상품거래가 필수이므로 순수 이전만의 기본 혜택으로 자동 계산하지 않는다.",
+      "officialUrl": "https://www.hanwhawm.com/event/event/event_common_view.cmd?event_code=20260901B",
       "evidenceUrls": [
-        "https://p.tossinvest.com/ko/faq?tab=400"
+        "https://www.hanwhawm.com/event/event/event_common_view.cmd?event_code=20260901B",
+        "https://www.hanwhawm.com/event/20260901B/img/01.png?v=20260930"
       ],
-      "verifiedAt": "2026-10-17T13:08+09:00",
-      "multiplierNumerator": 1,
+      "verifiedAt": "2026-10-19T09:36:20+09:00",
+      "multiplierNumerator": 2,
       "multiplierDenominator": 1,
       "multiplierMinimum": 0,
       "minimumTransferWon": 1,
-      "calculationVerified": false
+      "calculationVerified": true
     },
     {
-      "id": "ISA:kakao",
-      "brokerageId": "kakao",
+      "id": "ISA:hyundai",
+      "brokerageId": "hyundai",
       "product": "ISA",
-      "title": "현재 이전 이벤트 확인 필요",
-      "kind": "미확인",
+      "title": "ISA STEP-UP · 신규 고객 선착순 구간 혜택",
+      "kind": "배민·신세계 모바일 상품권 · 신규·선착순",
       "rewardUnit": "원",
-      "tiers": [],
-      "status": "UNVERIFIED",
-      "startDate": null,
-      "endDate": null,
-      "retentionText": "공식 조건 확인 필요",
-      "paymentText": "공식 조건 확인 필요",
-      "applicationText": "공식 조건 확인 필요",
+      "tiers": [
+        {
+          "minimumWon": 5000000,
+          "rewardWon": 20000
+        },
+        {
+          "minimumWon": 10000000,
+          "rewardWon": 50000
+        }
+      ],
+      "status": "RESTRICTED",
+      "startDate": "2026-08-28",
+      "endDate": "2026-12-31",
+      "retentionText": "구간 도달월 익월 말까지 기준금액 이상 잔고 유지",
+      "paymentText": "잔고 유지 확인 후 구간 도달월의 익익월 중 지급 예정",
+      "applicationText": "이벤트 신청·마케팅 정보 수신 동의 필수",
       "conditions": [
-        "공식 보호금융상품등록부에서 중개형 ISA 취급은 확인했습니다.",
-        "현재 타사 이전 이벤트 구간은 확인하지 못해 계산을 보류합니다."
+        "현대차 ISA를 처음 개설하는 고객이며 타사 ISA 이전 고객도 신규에 포함한다. 만 19세 이상 실명 개인 고객 대상. 기존 현대차 ISA 고객은 수수료 우대와 완주 추첨만 대상이다.",
+        "순입금 100만원 메가커피 세트 선착순 1천명, 500만원 배달의민족 2만원권 선착순 500명, 1천만원 신세계 5만원권 선착순 200명. 소진 시 구간별 조기 마감되며 남은 인원은 확인하지 못했다.",
+        "구간 도달월의 익월 말일 잔고가 기준 이상이면 익익월 중 지급한다. 쿠폰 유효기간 60일·연장 불가, 현금 교환 불가. 세금은 증권사 부담.",
+        "1인 1회 참여이며 해지·재가입으로 재참여할 수 없다. 휴대전화 번호 오류 등 고객 사유는 재발송 불가.",
+        "계좌개설 커피 쿠폰과 100만원 구간 커피 세트는 원화로 임의 환산하지 않는다. 2천만원 달성자 8명 추첨 경품·평생 수수료 우대는 기본 금액에 합산하지 않는다."
       ],
-      "calculationNote": "금액 계산 보류 · 공식 안내에서 현재 조건을 확인해 주세요.",
-      "officialUrl": "https://www.kakaopaysec.com/caution/protection/dynamicBoardPageDetail.do?id=7508",
+      "calculationNote": "타사 이전을 포함한 현대차 ISA 최초 신규 고객 대상. 500만원 2만원·1천만원 5만원 구간은 선착순 잔여 확인이 필요해 확정 기본 금액으로 자동 계산하지 않는다.",
+      "officialUrl": "https://www.hmsec.com/board/view.do?board_name=event_board&mbr_id=34963",
       "evidenceUrls": [
-        "https://www.kakaopaysec.com/caution/protection/dynamicBoardPageDetail.do?id=7508"
+        "https://www.hmsec.com/board/view.do?board_name=event_board&mbr_id=34963",
+        "https://www.hmsec.com/documents/event_board/images/000001/PC_event_ISA_fianl.png"
       ],
-      "verifiedAt": "2026-10-17T13:08+09:00",
+      "verifiedAt": "2026-10-19T09:36:20+09:00",
       "multiplierNumerator": 1,
       "multiplierDenominator": 1,
       "multiplierMinimum": 0,
-      "minimumTransferWon": 1,
-      "calculationVerified": false
+      "minimumTransferWon": 5000000,
+      "calculationVerified": true
     },
     {
       "id": "PENSION:mirae",
@@ -1082,59 +1133,102 @@
       "calculationVerified": true
     },
     {
-      "id": "PENSION:toss",
-      "brokerageId": "toss",
+      "id": "PENSION:hanwha",
+      "brokerageId": "hanwha",
       "product": "PENSION",
-      "title": "현재 이전 이벤트 확인 필요",
-      "kind": "미확인",
+      "title": "2026년 4분기 연금 순입금 · 연금저축",
+      "kind": "신세계 모바일 상품권",
       "rewardUnit": "원",
-      "tiers": [],
-      "status": "UNVERIFIED",
-      "startDate": null,
-      "endDate": null,
-      "retentionText": "공식 조건 확인 필요",
-      "paymentText": "공식 조건 확인 필요",
-      "applicationText": "공식 조건 확인 필요",
+      "tiers": [
+        {
+          "minimumWon": 3000000,
+          "rewardWon": 10000
+        },
+        {
+          "minimumWon": 6000000,
+          "rewardWon": 20000
+        },
+        {
+          "minimumWon": 9000000,
+          "rewardWon": 30000
+        },
+        {
+          "minimumWon": 18000000,
+          "rewardWon": 40000
+        },
+        {
+          "minimumWon": 30000000,
+          "rewardWon": 50000
+        },
+        {
+          "minimumWon": 50000000,
+          "rewardWon": 100000
+        },
+        {
+          "minimumWon": 100000000,
+          "rewardWon": 300000
+        },
+        {
+          "minimumWon": 300000000,
+          "rewardWon": 700000
+        },
+        {
+          "minimumWon": 500000000,
+          "rewardWon": 1000000
+        }
+      ],
+      "status": "ACTIVE",
+      "startDate": "2026-10-12",
+      "endDate": "2026-12-31",
+      "retentionText": "2027-01-31까지 순입금 잔고, 2월 지급 시까지 정상 계좌 유지",
+      "paymentText": "2027년 2월 말 신세계 모바일 상품권 발송 예정",
+      "applicationText": "이벤트 신청 및 마케팅 SMS 동의 필수",
       "conditions": [
-        "공식 FAQ에서 현재 타사 연금 가져오기 지원 여부와 이벤트 조건을 재확인해야 합니다.",
-        "이전 기능 준비 중 안내 이력이 있어 현재 이용 가능하다고 단정하지 않습니다."
+        "이벤트 신청과 개인정보 수집·제공 및 마케팅 SMS 수신 동의 필수. 지급 시까지 정상 계좌 유지, 해지 시 지급 불가.",
+        "2027-01-31 기준 잔고 조건 유지 후 2027년 2월 말 모바일 신세계 상품권 발송 예정. 발송 번호 1577-2741, 수신 거부·번호 오류·1주 이상 부재 등으로 수령하지 못하면 지급 불가.",
+        "상품권 교환 가능 기간 60일, 연장 불가. 일정·혜택은 변경되거나 조기 종료될 수 있으며 조건 충족 고객 지급은 공식 안내를 따른다.",
+        "공식 목록에는 2026-10-12 시작, 포스터 본문·유의사항에는 2026-10-06 시작으로 표시되어 있다. 비교 계산은 보수적으로 10월 12일부터 적용하며 이전 기간 참여는 증권사 확인 필요.",
+        "입금-출금 순입금 기준. 타사 은행·보험·증권사에서 이전한 금액이 1천만원 이상이면 1.5배 인정하며 해당 출금도 동일하게 반영한다. ISA 만기전환 1천만원 이상도 1.5배이나 기본 계산에는 순수 타사 연금저축 이전만 사용한다.",
+        "법정퇴직금·명예퇴직금·퇴직위로금·특별희망퇴직금 등을 모두 제외하며, 타사에 과거 퇴직금을 입금한 뒤 이전하는 경우도 제외한다.",
+        "개인연금펀드와 연금저축 다수 계좌는 합산한다. 자사 계좌 간 이전·단체연금·토스 연계 연금저축 계좌는 대상에서 제외한다.",
+        "총 수령액 5만원 초과 시 제세공과금 22%는 증권사 부담이며 고객의 기타소득으로 귀속된다. 별도 ETF·TDF 매수 혜택은 합산하지 않는다."
       ],
-      "calculationNote": "금액 계산 보류 · 공식 안내에서 현재 조건을 확인해 주세요.",
-      "officialUrl": "https://p.tossinvest.com/ko/faq?tab=400",
+      "calculationNote": "타사 이전액 1천만원 이상부터 1.5배 인정, 그 미만은 1배. 순입금 300만원 이상 기본 구간만 계산하며 퇴직금은 제외.",
+      "officialUrl": "https://www.hanwhawm.com/event/event/event_common_view.cmd?event_code=20261006A",
       "evidenceUrls": [
-        "https://p.tossinvest.com/ko/faq?tab=400"
+        "https://www.hanwhawm.com/event/event/event_common_view.cmd?event_code=20261006A",
+        "https://www.hanwhawm.com/event/20261006A/img/img_1.png?v=20260930"
       ],
-      "verifiedAt": "2026-10-17T13:08+09:00",
-      "multiplierNumerator": 1,
-      "multiplierDenominator": 1,
-      "multiplierMinimum": 0,
-      "minimumTransferWon": 1,
-      "calculationVerified": false
+      "verifiedAt": "2026-10-19T09:36:20+09:00",
+      "multiplierNumerator": 3,
+      "multiplierDenominator": 2,
+      "multiplierMinimum": 10000000,
+      "minimumTransferWon": 3000000,
+      "calculationVerified": true
     },
     {
-      "id": "PENSION:kakao",
-      "brokerageId": "kakao",
+      "id": "PENSION:hyundai",
+      "brokerageId": "hyundai",
       "product": "PENSION",
-      "title": "현재 이전 이벤트 확인 필요",
-      "kind": "미확인",
+      "title": "연금저축 타사 이전 기본 혜택 확인 필요",
+      "kind": "현행 이전 금액별 혜택 미확인",
       "rewardUnit": "원",
       "tiers": [],
       "status": "UNVERIFIED",
       "startDate": null,
       "endDate": null,
-      "retentionText": "공식 조건 확인 필요",
-      "paymentText": "공식 조건 확인 필요",
-      "applicationText": "공식 조건 확인 필요",
+      "retentionText": "현행 이전 행사 유지 조건 확인 필요",
+      "paymentText": "현행 이전 행사 지급 조건 확인 필요",
+      "applicationText": "공식 신청 조건 확인 필요",
       "conditions": [
-        "공식 보도자료에서 연금저축과 타사 연금 이전 기능을 확인했습니다.",
-        "현재 이전 이벤트의 기간·금액 구간은 확인하지 못해 계산을 보류합니다."
+        "2026-10-19 공식 진행중 행사 목록 확인. 현행 연금저축 이전 보상 금액을 검증하지 못했다. 행사 없음이나 상품 미지원 확정으로 해석하지 않는다."
       ],
-      "calculationNote": "금액 계산 보류 · 공식 안내에서 현재 조건을 확인해 주세요.",
-      "officialUrl": "https://www.kakaopaysec.com/company/news_page/dynamicNewsDetail.do?id=114",
+      "calculationNote": "공식 진행중 행사 목록에서 IRP·ISA·정년퇴직예정자 행사를 확인했으나 연금저축 이전 기본 혜택은 검증하지 못해 계산하지 않는다.",
+      "officialUrl": "https://www.hmsec.com/board/list.do?board_name=event_board",
       "evidenceUrls": [
-        "https://www.kakaopaysec.com/company/news_page/dynamicNewsDetail.do?id=114"
+        "https://www.hmsec.com/board/list.do?board_name=event_board"
       ],
-      "verifiedAt": "2026-10-17T13:08+09:00",
+      "verifiedAt": "2026-10-19T09:36:20+09:00",
       "multiplierNumerator": 1,
       "multiplierDenominator": 1,
       "multiplierMinimum": 0,
@@ -1514,64 +1608,151 @@
       "calculationVerified": true
     },
     {
-      "id": "IRP:toss",
-      "brokerageId": "toss",
+      "id": "IRP:hanwha",
+      "brokerageId": "hanwha",
       "product": "IRP",
-      "title": "현재 이전 이벤트 확인 필요",
-      "kind": "미확인",
+      "title": "2026년 4분기 연금 순입금 · IRP",
+      "kind": "신세계 모바일 상품권",
       "rewardUnit": "원",
-      "tiers": [],
-      "status": "UNVERIFIED",
-      "startDate": null,
-      "endDate": null,
-      "retentionText": "공식 조건 확인 필요",
-      "paymentText": "공식 조건 확인 필요",
-      "applicationText": "공식 조건 확인 필요",
+      "tiers": [
+        {
+          "minimumWon": 3000000,
+          "rewardWon": 10000
+        },
+        {
+          "minimumWon": 6000000,
+          "rewardWon": 20000
+        },
+        {
+          "minimumWon": 9000000,
+          "rewardWon": 30000
+        }
+      ],
+      "status": "ACTIVE",
+      "startDate": "2026-10-12",
+      "endDate": "2026-12-31",
+      "retentionText": "2027-01-31까지 순입금 잔고, 2월 지급 시까지 정상 계좌 유지",
+      "paymentText": "2027년 2월 말 신세계 모바일 상품권 발송 예정",
+      "applicationText": "이벤트 신청 및 마케팅 SMS 동의 필수",
       "conditions": [
-        "현재 적용되는 타사 이전 행사의 금액 구간과 조건을 검증하지 못했습니다.",
-        "확인 실패는 상품 미취급이나 이벤트 미진행을 뜻하지 않습니다."
+        "이벤트 신청과 개인정보 수집·제공 및 마케팅 SMS 수신 동의 필수. 지급 시까지 정상 계좌 유지, 해지 시 지급 불가.",
+        "2027-01-31 기준 잔고 조건 유지 후 2027년 2월 말 모바일 신세계 상품권 발송 예정. 발송 번호 1577-2741, 수신 거부·번호 오류·1주 이상 부재 등으로 수령하지 못하면 지급 불가.",
+        "상품권 교환 가능 기간 60일, 연장 불가. 일정·혜택은 변경되거나 조기 종료될 수 있으며 조건 충족 고객 지급은 공식 안내를 따른다.",
+        "공식 목록에는 2026-10-12 시작, 포스터 본문·유의사항에는 2026-10-06 시작으로 표시되어 있다. 비교 계산은 보수적으로 10월 12일부터 적용하며 이전 기간 참여는 증권사 확인 필요.",
+        "다수 IRP 계좌 이전액은 합산하며 자사 계좌 간 이전은 제외한다. 연금저축의 1.5배 인정 규칙을 IRP에 적용하지 않는다.",
+        "퇴직연금 특별이익 연간 누적 3만원 한도. 공식 각주는 2027년 한화 DC·IRP 이벤트 수령 상품 합계가 3만원을 초과할 수 없으며 초과 시 경품 미제공으로 안내한다. 기존 수령 내역을 별도 확인해야 한다."
       ],
-      "calculationNote": "금액 계산 보류 · 공식 안내에서 현재 조건을 확인해 주세요.",
-      "officialUrl": "https://p.tossinvest.com/ko/faq?tab=400",
+      "calculationNote": "타사 IRP 이전액은 1배. 순입금 300만·600만·900만원 구간, 연간 특별이익 한도 3만원 적용.",
+      "officialUrl": "https://www.hanwhawm.com/event/event/event_common_view.cmd?event_code=20261006A",
       "evidenceUrls": [
-        "https://p.tossinvest.com/ko/faq?tab=400"
+        "https://www.hanwhawm.com/event/event/event_common_view.cmd?event_code=20261006A",
+        "https://www.hanwhawm.com/event/20261006A/img/img_1.png?v=20260930"
       ],
-      "verifiedAt": "2026-10-17T13:08+09:00",
+      "verifiedAt": "2026-10-19T09:36:20+09:00",
       "multiplierNumerator": 1,
       "multiplierDenominator": 1,
       "multiplierMinimum": 0,
-      "minimumTransferWon": 1,
-      "calculationVerified": false
+      "minimumTransferWon": 3000000,
+      "calculationVerified": true
     },
     {
-      "id": "IRP:kakao",
-      "brokerageId": "kakao",
+      "id": "IRP:hyundai",
+      "brokerageId": "hyundai",
       "product": "IRP",
-      "title": "현재 이전 이벤트 확인 필요",
-      "kind": "미확인",
+      "title": "IRP 입금 이벤트 · 기존·신규 계좌 공통 기본 혜택",
+      "kind": "신세계이마트 모바일 상품권",
       "rewardUnit": "원",
-      "tiers": [],
-      "status": "UNVERIFIED",
-      "startDate": null,
-      "endDate": null,
-      "retentionText": "공식 조건 확인 필요",
-      "paymentText": "공식 조건 확인 필요",
-      "applicationText": "공식 조건 확인 필요",
+      "tiers": [
+        {
+          "minimumWon": 1000000,
+          "rewardWon": 10000
+        },
+        {
+          "minimumWon": 3000000,
+          "rewardWon": 20000
+        },
+        {
+          "minimumWon": 5000000,
+          "rewardWon": 30000
+        }
+      ],
+      "status": "ACTIVE",
+      "startDate": "2026-08-28",
+      "endDate": "2026-12-31",
+      "retentionText": "2027-01-31까지 입금·이전 조건 유지",
+      "paymentText": "2027년 2월 중 모바일 상품권 일괄 지급 예정",
+      "applicationText": "이벤트 신청 및 개인신용정보 선택·서비스 안내 동의 필수",
       "conditions": [
-        "현재 적용되는 타사 이전 행사의 금액 구간과 조건을 검증하지 못했습니다.",
-        "확인 실패는 상품 미취급이나 이벤트 미진행을 뜻하지 않습니다."
+        "IRP 신규·기존 개인 고객 공통. 만 19세 미만·외국인·법인은 제외하며, 현대차증권 IRP 정년퇴직예정자 이벤트 신청 대상 고객도 제외한다.",
+        "개인납입·퇴직금·ISA 만기전환·타사 IRP 이전 완료 금액을 합산하는 행사이나 비교 계산은 순수 타사 IRP 이전만 사용한다.",
+        "실명 기준 고객당 1회 신청. 2027-01-31까지 조건 유지, 지급 시 계좌 폐쇄나 마케팅 동의 철회 시 지급 불가.",
+        "퇴직연금 특별이익 연간 누적 최대 3만원 한도이며 증권사에서 제공하는 모든 관련 혜택을 합산한다. 신규 계좌 1만원 보너스를 기본 금액에 추가하지 않는다.",
+        "상품권은 신청한 휴대전화로 발송하며 번호 오류·1주 이상 부재·수신거부 등은 재발송되지 않을 수 있다. 유효기간 60일, 연장 불가. 동일 가치 다른 상품으로 변경 가능."
       ],
-      "calculationNote": "금액 계산 보류 · 공식 안내에서 현재 조건을 확인해 주세요.",
-      "officialUrl": "https://www.kakaopaysec.com/caution/protection/dynamicBoardPageDetail.do?id=7508",
+      "calculationNote": "타사 IRP 수관 완료 금액 1배. 100만·300만·500만원 이상 기본 입금 구간만 계산, 신규 계좌개설 보너스는 제외.",
+      "officialUrl": "https://www.hmsec.com/board/view.do?board_name=event_board&mbr_id=34967",
       "evidenceUrls": [
-        "https://www.kakaopaysec.com/caution/protection/dynamicBoardPageDetail.do?id=7508"
+        "https://www.hmsec.com/board/view.do?board_name=event_board&mbr_id=34967",
+        "https://www.hmsec.com/documents/event_board/images/000001/IRP%EC%9E%85%EA%B8%88%EC%9D%B4%EB%B2%A4%ED%8A%B8_%ED%8E%98%EC%9D%B4%EC%A7%80.jpg"
       ],
-      "verifiedAt": "2026-10-17T13:08+09:00",
+      "verifiedAt": "2026-10-19T09:36:20+09:00",
       "multiplierNumerator": 1,
       "multiplierDenominator": 1,
       "multiplierMinimum": 0,
-      "minimumTransferWon": 1,
-      "calculationVerified": false
+      "minimumTransferWon": 1000000,
+      "calculationVerified": true
+    }
+  ],
+  "brokerages": [
+    {
+      "id": "mirae",
+      "name": "미래에셋증권",
+      "shortName": "미래"
+    },
+    {
+      "id": "samsung",
+      "name": "삼성증권",
+      "shortName": "삼성"
+    },
+    {
+      "id": "korea",
+      "name": "한국투자증권",
+      "shortName": "한투"
+    },
+    {
+      "id": "nh",
+      "name": "NH투자증권",
+      "shortName": "NH"
+    },
+    {
+      "id": "kb",
+      "name": "KB증권",
+      "shortName": "KB"
+    },
+    {
+      "id": "shinhan",
+      "name": "신한투자증권",
+      "shortName": "신한"
+    },
+    {
+      "id": "kiwoom",
+      "name": "키움증권",
+      "shortName": "키움"
+    },
+    {
+      "id": "daishin",
+      "name": "대신증권",
+      "shortName": "대신"
+    },
+    {
+      "id": "hanwha",
+      "name": "한화투자증권",
+      "shortName": "한화"
+    },
+    {
+      "id": "hyundai",
+      "name": "현대차증권",
+      "shortName": "현대"
     }
   ]
 }

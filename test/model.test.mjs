@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { reward, rewardLabel, parseAmount, toggleSelection, status } from '../public/model.js';
+import { reward, rewardLabel, parseAmount, toggleSelection, status, catalogBrokers } from '../public/model.js';
 const catalog=JSON.parse(await readFile(new URL('../public/catalog.json',import.meta.url),'utf8'));
 const event={...catalog.events.find(row=>row.status==='ACTIVE'),startDate:'2026-10-01',endDate:'2026-12-31',multiplierNumerator:3,multiplierDenominator:2,multiplierMinimum:0,minimumTransferWon:1,tiers:[{minimumWon:5_000_000,rewardWon:20_000}]};
 test('integer boundary for fractional multiplier',()=>{assert.equal(reward(event,3_333_333,'2026-10-17'),null);assert.equal(reward(event,3_333_334,'2026-10-17'),20_000);});
@@ -19,6 +19,31 @@ test('all 30 records keep unique coverage and unknown rewards hidden',()=>{
  const points={...event,rewardUnit:'P'};assert.equal(rewardLabel(points,10_000_000,'2026-10-17'),'20,000P');
 });
 test('selection never exceeds three and can be removed',()=>{const ids=['a','b','c'];assert.equal(toggleSelection(ids,'d'),ids);assert.deepEqual(toggleSelection(ids,'b'),['a','c']);});
+test('DB broker registry replaces two firms and supports a later name change without changing client code',()=>{
+ const names=catalogBrokers(catalog);assert.equal(names.length,10);
+ assert.equal(names.some(b=>b[0]==='toss'||b[0]==='kakao'),false);
+ assert.deepEqual(names.slice(-2).map(b=>b[0]),['hanwha','hyundai']);
+ const renamed=structuredClone(catalog);renamed.brokerages.at(-1).name='새 표시 이름';
+ assert.equal(catalogBrokers(renamed).at(-1)[1],'새 표시 이름');
+});
+test('Hanwha 1.5x applies only to pension transfer from 10m; Hyundai IRP uses 1m/3m/5m; restricted ISA never promises money',()=>{
+ const find=id=>catalog.events.find(r=>r.id===id),d='2026-10-19';
+ assert.equal(reward(find('PENSION:hanwha'),2_999_999,d),null);
+ assert.equal(reward(find('PENSION:hanwha'),3_000_000,d),10_000);
+ assert.equal(reward(find('PENSION:hanwha'),5_999_999,d),10_000);
+ assert.equal(reward(find('PENSION:hanwha'),6_000_000,d),20_000);
+ assert.equal(reward(find('PENSION:hanwha'),11_999_999,d),30_000);
+ assert.equal(reward(find('PENSION:hanwha'),12_000_000,d),40_000);
+ assert.equal(reward(find('PENSION:hanwha'),20_000_000,d),50_000);
+ assert.equal(reward(find('IRP:hanwha'),5_999_999,d),10_000);
+ assert.equal(reward(find('IRP:hanwha'),6_000_000,d),20_000);
+ assert.equal(reward(find('IRP:hyundai'),999_999,d),null);
+ assert.equal(reward(find('IRP:hyundai'),1_000_000,d),10_000);
+ assert.equal(reward(find('IRP:hyundai'),3_000_000,d),20_000);
+ assert.equal(reward(find('IRP:hyundai'),5_000_000,d),30_000);
+ for(const id of ['ISA:hanwha','ISA:hyundai','PENSION:hyundai'])assert.equal(reward(find(id),10_000_000,d),null);
+ assert.equal(reward(find('IRP:hyundai'),10_000_000,'2027-01-01'),null);
+});
 test('verified Korea transfer tiers use correct raw boundaries and no extra bonuses',()=>{
  const find=product=>catalog.events.find(row=>row.id===product+':korea');
  assert.equal(reward(find('ISA'),999_999,'2026-10-18'),null);

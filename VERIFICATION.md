@@ -1,5 +1,13 @@
 # 웹 데모 검증
 
+## 2026-10-19 옮김 0.3.1 / 회사 목록 DB화
+
+토스·카카오페이를 한화투자·현대차증권으로 교체한 revision 4(30개 항목)를 운영 DB에 발행하고 공개 API로 읽어 확인했다. ACTIVE 24 / RESTRICTED 3 / UNVERIFIED 3. 기존 여덟 회사의 조건은 변경하지 않았다. 새 두 회사의 공식 포스터를 구간·각주까지 확인했으며 제한 사항과 출처는 [RELEASE-0.3.1.md](RELEASE-0.3.1.md)에 기록했다.
+
+Node 18개·Python 발행 6개 검사 통과. 회사 목록을 DB metadata에서 읽는 동작, metadata 없는 이전 revision 호환, 회사 중복 거절, 회사명 변경 감지, 한화 1천만원부터 1.5배 및 경계, 현대차 IRP 100만·300만·500만원, 제한 ISA의 자동 계산 차단을 검증했다. 웹 실접속에서 토스·카카오페이가 빠지고 한화·현대차가 나타났으며 두 ISA의 제한 표시도 확인했다.
+
+Android 앱 이름 '옮김', 적응형 및 테마 아이콘, versionCode 6 / 0.3.1-demo를 실제 APK badging에서 확인했다. 빌드·JUnit 10개·Lint(0 errors/10 warnings)·APK v2 서명과 APK 내 revision 4 자료 일치 검사 통과. 추가 경고는 아이콘 리소스 구성·사용되지 않는 이전 아이콘 및 KTX 스타일 권고이며 오류는 없다. 실제 휴대폰 UI는 아직 검증하지 않았다.
+
 ## 2026-10-19 Vercel·DB 전환 0.3
 
 14개 Node 테스트 통과: 기존 혜택 경계 6개, 검증되지 않은 원격 자료 거절, 메타데이터 변경 무시, 검토·기준 revision 필수, 쓰기·Cron 인증, DB 응답·ETag·장애 시 503, 원격 갱신·이전 revision 차단, 원문 접근 실패 구분 및 실제 PostgreSQL(PGlite) 트랜잭션 발행. 현재 Python publisher와 JS publisher의 업무 해시가 일치한다. PGlite에서 최초 revision 3 → 동일 조건 no-op → 오래된 writer 거절 → revision 4와 불변 이력·현재 포인터를 검증했다. 운영 Neon 검증과 실제 배포는 전환 기록을 따르며 메모리 DB 테스트 성공을 운영 연결 성공으로 안내하지 않는다.

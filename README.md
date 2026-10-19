@@ -1,4 +1,4 @@
-# Vercel·DB 전환 0.3
+# 옮김 웹·DB 운영 0.3.1
 
 GitHub: https://github.com/bjkwak912/eevent / Vercel 프로젝트: `bjkwak912-7589/omgim`.
 
@@ -38,4 +38,4 @@ npm run catalog:publish -- public/catalog.json "공식 포스터와 상세 각�
 
 Node.js 24 LTS: `npm ci`, `npm test`, `npm start`. `http://localhost:3000`에서 확인한다. DB 없이도 초기 자료 API의 UI를 확인할 수 있다. 실제 DB 마이그레이션은 대상 검증 후에만 실행한다. 테스트는 메모리 PGlite DB로 발행 SQL을 검증하며 운영 DB에 접속하지 않는다.
 
-자료 revision 3(2026-10-19): 계산 가능 21개, 대상 제한 1개, 확인 필요 8개. 기존 Cafe24 서비스는 별도로 남아 있으며 Vercel 전환 검증 전까지 운영 완료로 안내하지 않는다.
+현재 자료는 revision 4(2026-10-19): 계산 가능 24개, 조건 제한 3개, 확인 필요 3개다. 토스·카카오페이를 한화투자·현대차로 교체했으며 세부 검증은 RELEASE-0.3.1.md를 따른다. 0.3.1부터 brokerages metadata로 회사 목록을 읽으므로 기존 0.3.0 이하는 새 앱을 한 번 설치해야 한다. 이후 목록 변경은 DB로 반영한다. 기존 Cafe24 서비스는 별도로 남아 있다.

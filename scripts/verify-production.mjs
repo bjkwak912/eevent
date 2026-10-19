@@ -12,4 +12,4 @@ for(const [path,method] of [['/api/admin/publish','POST'],['/api/cron/check','GE
 }
 const checks=await sql.query("SELECT result,details FROM check_runs WHERE result LIKE 'SOURCE_CHECK%' ORDER BY id DESC LIMIT 1");
 if(checks.length)for(const r of checks[0].details.results.filter(r=>r.status==='FAILED'))failures.push({url:r.url,reason:r.reason});
-console.log(JSON.stringify({checkedAt:new Date().toISOString(),origin:origin.origin,source:'database',revision:live.revision,records:live.events.length,fingerprint:fingerprint(live),unauthorizedWritesRejected:true,sourceCheck:checks[0]?.result||null,sourceFailures:failures},null,2));
+console.log(JSON.stringify({checkedAt:new Date().toISOString(),origin:origin.origin,source:'database',revision:live.revision,records:live.events.length,fingerprint:fingerprint(live),unauthorizedWritesRejected:true,sourceCheck:checks[0]?.result||null,sourceCheckRevision:checks[0]?.details.revision||null,sourceFailures:failures},null,2));

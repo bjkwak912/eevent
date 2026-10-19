@@ -20,6 +20,16 @@ test('metadata-only changes do not change semantic fingerprint',()=>{
   assert.equal(fingerprint(c),fingerprint(catalog));
   c.events.find(r=>r.status==='ACTIVE').tiers[0].rewardWon+=1;assert.notEqual(fingerprint(c),fingerprint(catalog));
 });
+test('broker registry is part of publication content and malformed registries are rejected',()=>{
+ const c=structuredClone(catalog);c.brokerages.reverse();assert.equal(fingerprint(c),fingerprint(catalog));
+ c.brokerages[0].name+=' 변경';assert.notEqual(fingerprint(c),fingerprint(catalog));
+ c.brokerages[0].id=c.brokerages[1].id;assert.throws(()=>validateCatalog(c));
+});
+test('legacy revision without registry remains readable during rolling deployment',()=>{
+ const c=structuredClone(catalog);delete c.brokerages;
+ for(const r of c.events){r.brokerageId=r.brokerageId==='hanwha'?'toss':r.brokerageId==='hyundai'?'kakao':r.brokerageId;r.id=r.product+':'+r.brokerageId;}
+ validateCatalog(c);
+});
 test('publication requires review and compare-and-swap base revision',()=>{
   assert.throws(()=>reviewedPublication({catalog}));assert.throws(()=>reviewedPublication({catalog,expectedRevision:3,reviewNote:''}));
   assert.equal(reviewedPublication({catalog,expectedRevision:3,reviewNote:'Official poster reviewed'}).expectedRevision,3);
@@ -48,5 +58,7 @@ test('source access failures or redirects cannot imply event expiry or a verifie
   for(const status of [302,403,404,500])assert.equal((await observeSource(url,async()=>new Response(null,{status}))).status,'FAILED');
   const r=await observeSource(url,async()=>new Response('<html>'+'.'.repeat(200)+'</html>',{headers:{'content-type':'text/html'}}));
   assert.equal(r.status,'OBSERVED');assert.match(r.hash,/^[a-f0-9]{64}$/);assert.equal(r.verified,undefined);
+  const gif=await observeSource(url,async()=>new Response(new Uint8Array(200),{headers:{'content-type':'image/gif'}}));
+  assert.equal(gif.status,'OBSERVED'); // Hyundai official posters use GIF bytes despite .png/.jpg URLs.
   assert.equal((await observeSource('https://evil.test',()=>{throw Error();})).status,'FAILED');
 });

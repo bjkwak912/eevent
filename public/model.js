@@ -1,7 +1,9 @@
 export const MAX_AMOUNT = 100_000_000_000;
 export const brokers = [['mirae','미래에셋증권','미래'],['samsung','삼성증권','삼성'],['korea','한국투자증권','한투'],['nh','NH투자증권','NH'],['kb','KB증권','KB'],['shinhan','신한투자증권','신한'],['kiwoom','키움증권','키움'],['daishin','대신증권','대신'],['toss','토스증권','토스'],['kakao','카카오페이증권','카페']];
+// Legacy fallback only. The current ten firms and their names are published in the DB catalog.
+export function catalogBrokers(catalog) { return catalog?.brokerages?.map(b=>[b.id,b.name,b.shortName]) ?? brokers; }
 export const products = { ISA: '중개형 ISA', PENSION: '연금저축', IRP: 'IRP' };
-export const statuses = { ACTIVE: '조건부 예상', RESTRICTED: '참여 대상 제한', DETAILS_PENDING: '세부 조건 검증 중', UNVERIFIED: '현재 행사 확인 필요', PREPARING: '이전 기능 준비 중' };
+export const statuses = { ACTIVE: '조건부 예상', RESTRICTED: '참여 조건 제한', DETAILS_PENDING: '세부 조건 검증 중', UNVERIFIED: '현재 행사 확인 필요', PREPARING: '이전 기능 준비 중' };
 export const won = value => Number(value).toLocaleString('ko-KR');
 export const todayKorea = () => new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Seoul', year:'numeric', month:'2-digit', day:'2-digit' }).format(new Date());
 export function parseAmount(raw) { return /^\d+$/.test(raw) && Number.isSafeInteger(Number(raw)) && Number(raw) > 0 && Number(raw) <= MAX_AMOUNT ? Number(raw) : null; }
