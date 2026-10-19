@@ -30,3 +30,19 @@ test('verified Korea transfer tiers use correct raw boundaries and no extra bonu
  assert.equal(reward(find('IRP'),100_000,'2026-10-18'),10_000);
  assert.equal(reward(find('IRP'),10_000_000,'2026-10-18'),30_000);
 });
+test('Daishin uses transfer column and 1.5x pension without rounding or purchase bonus',()=>{
+ const find=product=>catalog.events.find(row=>row.id===product+':daishin');
+ const day='2026-10-19';
+ assert.equal(reward(find('ISA'),999_999,day),null);
+ assert.equal(reward(find('ISA'),1_000_000,day),10_000);
+ assert.equal(reward(find('ISA'),10_000_000,day),60_000);
+ assert.equal(reward(find('PENSION'),666_666,day),null);
+ assert.equal(reward(find('PENSION'),666_667,day),10_000);
+ assert.equal(reward(find('PENSION'),4_000_000,day),20_000);
+ assert.equal(reward(find('PENSION'),10_000_000,day),30_000);
+ assert.equal(reward(find('IRP'),999_999,day),null);
+ assert.equal(reward(find('IRP'),1_000_000,day),10_000);
+ assert.equal(reward(find('IRP'),3_000_000,day),20_000);
+ assert.equal(reward(find('IRP'),9_000_000,day),30_000);
+ assert.equal(reward(find('ISA'),10_000_000,'2026-12-01'),null);
+});
