@@ -1,4 +1,6 @@
-# 옮김 웹·DB 운영 0.3.1
+# 옮김 웹·DB 운영 0.3.2
+
+0.3.2는 사용자가 선택한 흰 배경·파랑/민트 연결 아이콘을 적용한다. 행사 자료는 revision 4를 유지한다. [아이콘 변경·검증](RELEASE-0.3.2.md).
 
 GitHub: https://github.com/bjkwak912/eevent / Vercel 프로젝트: `bjkwak912-7589/omgim`.
 
